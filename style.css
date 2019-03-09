@@ -64,7 +64,183 @@ h1 {
 	width: 15%;
 }
 
+	#Resorts a {
+		font-family: hind,sans-serif;
+		}
+		#Resorts a:hover path:first-child {
+		fill:#AFD7D6;
+		}
+		#Resorts a text {
+		visibility: hidden;
+		font-size: 36px;
+		text-decoration: underline;
+		}
+		#Resorts a:hover text {
+		visibility: visible;
+		}
+#Resorts .resort {
+  fill:#D9D9D9;
+}
+#Resorts .geo-ind,#Resorts .title{
+  fill:#005a56;
+}
+#Resorts rect{
+  fill: transparent
+}
+
+#slimHeader {
+margin-left: 50px;
+
+}
+
+ul.bs-autocomplete-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
+  z-index: 9999;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);
+}
+
+ul.bs-autocomplete-menu a {
+  font-weight: normal;
+  color: #333333;
+}
+
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.ui-state-active,
+.ui-state-focus {
+  color: #23527c;
+  background-color: #eeeeee;
+}
+
+.bs-autocomplete-feedback {
+  width: 1.5em;
+  height: 1.5em;
+  overflow: hidden;
+  margin-top: .5em;
+  margin-right: .5em;
+}
+
+.loader {
+  font-size: 10px;
+  text-indent: -9999em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #333;
+  background: -moz-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #333333 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #333;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.loader:after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  border-radius: 4px;
+  background-color: grey;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 
 
+}
 
-	</style>
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
