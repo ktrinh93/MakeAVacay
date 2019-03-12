@@ -1,0 +1,111 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+
+    <input type="text" id="input">
+    <button id="submit" type="submit">Submit</button>
+
+    <p id="json"></p>
+    <p id="city-id"></p>
+    <p id="trending"></p>
+
+    <script type="text/javascript">
+
+        //https://developers.zomato.com/documentation
+
+        var submitButton = $("#submit");
+        var inputField = $("#input");
+
+        var userInput = "";
+
+        submitButton.on("click", function(event) {
+            event.preventDefault();
+
+            userInput = inputField.val().trim();
+
+            var formattedInput = userInput.replace(" ", "%20");
+            var apiLocationURL = "https://developers.zomato.com/api/v2.1/locations?query=" + formattedInput;
+            
+            $.ajax({
+                url: apiLocationURL,
+                method: "GET",
+                headers: {
+                    "user-key": "e9a701115b6afc966a7343268747292a"
+                }
+            }).then(function(data) {
+
+                var location = data.location_suggestions[0];
+                var locationID = location.entity_id;
+                $("#json").text(JSON.stringify(data));
+                $("#city-id").text(locationID);
+
+                var apiTrendingFoodURL = "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&entity_id=" + locationID;
+
+                $.ajax({
+                    url: apiTrendingFoodURL,
+                    method: "GET",
+                    headers: {
+                        "user-key": "e9a701115b6afc966a7343268747292a"
+                    }
+                }).then(function(data) {
+                    console.log(data);
+                    var restaurants = data.restaurants;
+
+                    for(var i = 0; i < restaurants.length; i++) {
+                        console.log(restaurants[i]);
+                        var r = restaurants[i].restaurant;
+                        var name = r.name;
+                        var cuisine = r.cuisines;
+                        var rating = r.user_rating.aggregate_rating;
+                        var pricing = r.price_range;
+                        var price = "";
+                        var menu = r.menu_url;
+
+                        console.log(parseInt(pricing));
+                        for(var j = 0; j < parseInt(pricing); j++) {
+                            price += "$";
+                        }
+
+                        $("#trending").append($("<p>").text(name));
+                        $("#trending").append($("<p>").text(cuisine));
+                        $("#trending").append($("<p>").text(rating));
+                        $("#trending").append($("<p>").text(price));
+                        $("#trending").append($("<a>").attr("href", menu).text("Menu"));
+                        $("#trending").append($("<hr>"));
+                    }
+
+                    
+
+                });
+
+
+            });
+
+            //var googleKey = "AIzaSyCJIzDJtIKUwLvDp99MxPEui-gs2Nq-Dvk";
+            var googleKey = "AIzaSyD2vnfzmMEFVlF3FEFbaupBYr9leiR4HjQ";
+
+            $.ajax({
+                url: "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=" + googleKey,
+                method: "POST"
+            }).then(function(data) {
+                console.log(data.toString());
+            });
+
+        });
+
+        
+        
+        
+        
+    </script>
+
+</body>
+</html>
