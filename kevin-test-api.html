@@ -44,8 +44,6 @@
 
                 var location = data.location_suggestions[0];
                 var locationID = location.entity_id;
-                $("#json").text(JSON.stringify(data));
-                $("#city-id").text(locationID);
 
                 var apiTrendingFoodURL = "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&entity_id=" + locationID;
 
@@ -56,7 +54,6 @@
                         "user-key": "e9a701115b6afc966a7343268747292a"
                     }
                 }).then(function(data) {
-                    console.log(data);
                     var restaurants = data.restaurants;
 
                     for(var i = 0; i < restaurants.length; i++) {
@@ -74,30 +71,24 @@
                             price += "$";
                         }
 
-                        $("#trending").append($("<p>").text(name));
-                        $("#trending").append($("<p>").text(cuisine));
-                        $("#trending").append($("<p>").text(rating));
-                        $("#trending").append($("<p>").text(price));
-                        $("#trending").append($("<a>").attr("href", menu).text("Menu"));
+                        var newDiv = $("<div>");
+                        newDiv.append($("<p>").text("Name: " + name));
+                        newDiv.append($("<p>").text("Cuisine: " + cuisine));
+                        newDiv.append($("<p>").text("Rating: " + rating));
+                        newDiv.append($("<p>").text("Price: " + price));
+                        newDiv.append($("<a>").attr("href", menu).text("Menu"));
+
+                        $("#trending").append(newDiv);
                         $("#trending").append($("<hr>"));
                     }
-
-                    
 
                 });
 
 
             });
 
-            //var googleKey = "AIzaSyCJIzDJtIKUwLvDp99MxPEui-gs2Nq-Dvk";
             var googleKey = "AIzaSyD2vnfzmMEFVlF3FEFbaupBYr9leiR4HjQ";
-
-            $.ajax({
-                url: "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=" + googleKey,
-                method: "POST"
-            }).then(function(data) {
-                console.log(data.toString());
-            });
+            var apiURL = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=" + googleKey;
 
         });
 
