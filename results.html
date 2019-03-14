@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Make A Vacation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+<div class="nav-right visible-xs">
+  <div class="button" id="btn">
+    <div class="bar top"></div>
+    <div class="bar middle"></div>
+    <div class="bar bottom"></div>
+  </div>
+</div>
+<!-- nav-right -->
+<main>
+
+<div class='parallax'>
+<br>
+
+		<div class="jumbotron jumbotron-fluid" id="transpHeader">
+	
+			<div class="container">
+				
+
+				 <h1 class="display-4">Make A Vacation</h1>
+					 <p class="lead">Your previous searches...</p>
+
+					 <div class="card" style="width: 18rem;">
+						<img class="card-img-top" src="sun.jpg" alt="Card image cap">
+							 <div class="card-body">
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									 </div>
+</div>
+			</div>
+		</div>
+
+
+
+</div>
+<br>
+  <nav>
+    <div class="nav-right hidden-xs">
+      <div class="button" id="btn">
+        <div class="bar top"></div>
+        <div class="bar middle"></div>
+        <div class="bar bottom"></div>
+      </div>
+    </div>
+    <!-- nav-right -->
+  </nav>
+
+ 
+</main>
+
+
+<div class="sidebar">
+  <ul class="sidebar-list">
+  <li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Home</a></li>
+    <li class="sidebar-item"><a href="apply.html" class="sidebar-anchor">Apply Now</a></li>
+	<li class="sidebar-item"><a href="results.html" class="sidebar-anchor">Your results</a></li>
+  
+	 <li class="sidebar-item"><a href="contact.html" class="sidebar-anchor">Contact us</a></li>
+    
+    
+  </ul>
+</div>
+
+
+
+	
+
+</div>
+
+
+</body>
+<script>
+$(document).ready(function() {
+  function toggleSidebar() {
+    $(".button").toggleClass("active");
+    $("main").toggleClass("move-to-left");
+    $(".sidebar-item").toggleClass("active");
+  }
+  $(".button").on("click tap", function() {
+    toggleSidebar();
+  });
+  $(document).keyup(function(e) {
+    if (e.keyCode === 27) {
+      toggleSidebar();
+    }
+  });
+});
+</script>
+   
+
+</html>
