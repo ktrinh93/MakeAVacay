@@ -26,38 +26,52 @@
 
         var userInput = "";
 
+        var zomatoAPIKey = "e9a701115b6afc966a7343268747292a";
+
+        // when the submit button is clicked...
         submitButton.on("click", function(event) {
             event.preventDefault();
 
+            // generate the API URL based on user input
             userInput = inputField.val().trim();
-
             var formattedInput = userInput.replace(" ", "%20");
             var apiLocationURL = "https://developers.zomato.com/api/v2.1/locations?query=" + formattedInput;
             
+            // ajax call to the locations endpoint
             $.ajax({
                 url: apiLocationURL,
                 method: "GET",
                 headers: {
-                    "user-key": "e9a701115b6afc966a7343268747292a"
+                    "user-key": zomatoAPIKey
                 }
             }).then(function(data) {
 
-                var location = data.location_suggestions[0];
-                var locationID = location.entity_id;
+                // log the response
+                console.log(data);
 
+                var locationID = data.location_suggestions[0].entity_id;
+
+                // generate the API URL based on previous API response
                 var apiTrendingFoodURL = "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&entity_id=" + locationID;
 
+                // ajax call to the search endpoint
                 $.ajax({
                     url: apiTrendingFoodURL,
                     method: "GET",
                     headers: {
-                        "user-key": "e9a701115b6afc966a7343268747292a"
+                        "user-key": zomatoAPIKey
                     }
                 }).then(function(data) {
+
+                    // log the response
+                    console.log(data);
+
                     var restaurants = data.restaurants;
 
+                    // loop through the restaurants array
                     for(var i = 0; i < restaurants.length; i++) {
-                        console.log(restaurants[i]);
+                        
+                        // gets the individual restaurant's data
                         var r = restaurants[i].restaurant;
                         var name = r.name;
                         var cuisine = r.cuisines;
@@ -66,11 +80,12 @@
                         var price = "";
                         var menu = r.menu_url;
 
-                        console.log(parseInt(pricing));
+                        // convert price integer to dollar signs
                         for(var j = 0; j < parseInt(pricing); j++) {
                             price += "$";
                         }
 
+                        // create a new div to store the data, append everything
                         var newDiv = $("<div>");
                         newDiv.append($("<p>").text("Name: " + name));
                         newDiv.append($("<p>").text("Cuisine: " + cuisine));
@@ -78,7 +93,9 @@
                         newDiv.append($("<p>").text("Price: " + price));
                         newDiv.append($("<a>").attr("href", menu).text("Menu"));
 
+                        // appends the new div to the existing "trending" div
                         $("#trending").append(newDiv);
+
                         $("#trending").append($("<hr>"));
                     }
 
@@ -87,14 +104,8 @@
 
             });
 
-            var googleKey = "AIzaSyD2vnfzmMEFVlF3FEFbaupBYr9leiR4HjQ";
-            var apiURL = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=" + googleKey;
-
         });
 
-        
-        
-        
         
     </script>
 
