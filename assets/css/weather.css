@@ -1,0 +1,38 @@
+body {
+  background: url("https://www.gstatic.com/cast/images/home/background4.jpg");
+  color: red;
+}
+
+#rowDiv {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+input[type="text"] {
+  height: 40px;
+  font-size: 20px;
+}
+
+#submitWeather {
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#show {
+  margin: auto;
+  text-align: center;
+}
+
+#instructionDiv {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+#jumboDiv {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
