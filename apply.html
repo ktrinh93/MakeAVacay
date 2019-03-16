@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="utf-8" />
-    <title>MakeA-Vacay</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta charset="utf-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="./assets/css/style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJIzDJtIKUwLvDp99MxPEui-gs2Nq-Dvk"></script>
+  <meta charset="utf-8" />
+  <title>MakeA-Vacay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJIzDJtIKUwLvDp99MxPEui-gs2Nq-Dvk"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+  <script src="./assets/javascript/app.js"></script>
 
 
-  
 </head>
 <script>
-$(document).ready(function() {
-  function toggleSidebar() {
-    $(".button").toggleClass("active");
-    $("main").toggleClass("move-to-left");
-    $(".sidebar-item").toggleClass("active");
-  }
-  $(".button").on("click tap", function() {
-    toggleSidebar();
-  });
-  $(document).keyup(function(e) {
-    if (e.keyCode === 27) {
-      toggleSidebar();
+  $(document).ready(function () {
+    function toggleSidebar() {
+      $(".button").toggleClass("active");
+      $("main").toggleClass("move-to-left");
+      $(".sidebar-item").toggleClass("active");
     }
+    $(".button").on("click tap", function () {
+      toggleSidebar();
+    });
+    $(document).keyup(function (e) {
+      if (e.keyCode === 27) {
+        toggleSidebar();
+      }
+    });
   });
-});
 </script>
 <div class="nav-right visible-xs">
   <div class="button" id="btn">
@@ -45,13 +50,13 @@ $(document).ready(function() {
 <!-- nav-right -->
 <main>
 
-<div class='parallax'>
-<br>
+  <div class='parallax'>
+    <br>
 
-		
 
-</div>
-<br>
+
+  </div>
+  <br>
   <nav>
     <div class="nav-right hidden-xs">
       <div class="button" id="btn">
@@ -62,97 +67,28 @@ $(document).ready(function() {
     </div>
     <!-- nav-right -->
   </nav>
-
- 
-
+  </div>
 
 
-	
+  <div class='applyBorder'>
+    <br>
+    <br>
+    <br>
 
-</div>
-
-
-<div class='applyBorder'>
-<br>
-<br>
-<br>
-
-		<div class="jumbotron jumbotron-fluid" id"transpHeader">
-			<div class="container">
-				 <h1 class="display-4" id="applyNow">apply now</h1>
-					 <p class="lead">The vacation of your dreams is at your fingertips.</p>
+    <div class="jumbotron jumbotron-fluid" id"transpHeader">
+      <div class="container">
+        <h1 class="display-4" id="applyNow">apply now</h1>
+        <p class="lead">The vacation of your dreams is at your fingertips.</p>
 
 
-<form>
-    <input type="text" id="input">
-    <button id="submit" type="submit">Submit</button>
+        <form>
+          <input type="text" id="input">
+          <button id="submit" type="submit" onclick="window.location.href='results.html'">Submit</button>
+        </form>
 
-    <p id="json"></p>
-    <p id="city-id"></p>
-    <p id="trending"></p>
-
-    <script type="text/javascript">
-        //https://developers.zomato.com/documentation
-        var submitButton = $("#submit");
-        var inputField = $("#input");
-        var userInput = "";
-        submitButton.on("click", function(event) {
-            event.preventDefault();
-            userInput = inputField.val().trim();
-            var formattedInput = userInput.replace(" ", "%20");
-            var apiLocationURL = "https://developers.zomato.com/api/v2.1/locations?query=" + formattedInput;
-            console.log(submitButton);
-            $.ajax({
-                url: apiLocationURL,
-                method: "GET",
-                headers: {
-                    "user-key": "e9a701115b6afc966a7343268747292a"
-                }
-            }).then(function(data) {
-                var location = data.location_suggestions[0];
-                var locationID = location.entity_id;
-                var apiTrendingFoodURL = "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&entity_id=" + locationID;
-                $.ajax({
-                    url: apiTrendingFoodURL,
-                    method: "GET",
-                    headers: {
-                        "user-key": "e9a701115b6afc966a7343268747292a"
-                    }
-                }).then(function(data) {
-                    var restaurants = data.restaurants;
-                    for(var i = 0; i < restaurants.length; i++) {
-                        console.log(restaurants[i]);
-                        var r = restaurants[i].restaurant;
-                        var name = r.name;
-                        var cuisine = r.cuisines;
-                        var rating = r.user_rating.aggregate_rating;
-                        var pricing = r.price_range;
-                        var price = "";
-                        var menu = r.menu_url;
-                        console.log(parseInt(pricing));
-                        for(var j = 0; j < parseInt(pricing); j++) {
-                            price += "$";
-                        }
-                        var newDiv = $("<div>");
-                        newDiv.append($("<p>").text("Name: " + name));
-                        newDiv.append($("<p>").text("Cuisine: " + cuisine));
-                        newDiv.append($("<p>").text("Rating: " + rating));
-                        newDiv.append($("<p>").text("Price: " + price));
-                        newDiv.append($("<a>").attr("href", menu).text("Menu"));
-                        $("#trending").append(newDiv);
-                        $("#trending").append($("<hr>"));
-                    }
-                });
-            });
-            var googleKey = "AIzaSyD2vnfzmMEFVlF3FEFbaupBYr9leiR4HjQ";
-            var apiURL = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=" + googleKey;
-        });
-        
-        
-        
-        
-    </script>
-
+        <p id="json"></p>
+        <p id="city-id"></p>
+        <p id="trending"></p>
 
 
 
@@ -160,17 +96,17 @@ $(document).ready(function() {
 
 <div class="sidebar">
   <ul class="sidebar-list">
-  <li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Home</a></li>
+    <li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Home</a></li>
     <li class="sidebar-item"><a href="apply.html" class="sidebar-anchor">Apply Now</a></li>
-	<li class="sidebar-item"><a href="results.html" class="sidebar-anchor">Your results</a></li>
-  
-	 <li class="sidebar-item"><a href="contact.html" class="sidebar-anchor">Contact us</a></li>
-    
-    
+    <li class="sidebar-item"><a href="results.html" class="sidebar-anchor">Your results</a></li>
+
+
+
   </ul>
 </div>
 
 </div>
 
 </body>
+
 </html>
